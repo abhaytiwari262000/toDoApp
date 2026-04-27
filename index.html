@@ -1,11 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-
-<h1>To do app</h1>
+<body>
+    
+    <h1>To do app</h1>
 
 <ul>
-    <li className="checked">
+    <li class="checked">
     
         get books
         
@@ -21,6 +27,7 @@
     </li>
 </ul>
 
+</body>
 
 <script>
     
@@ -30,9 +37,15 @@
 
     }
 
+   
+
     var checkedItems = document.getElementsByClassName("checked");
+
+    console.log(checkedItems)
         
-    for(var i;i<checkedItems.length;i++){
+    var i;
+
+    for(i=0;i<checkedItems.length;i++){
 
         checkedItems[i].onclick = checkItem;
 
@@ -44,5 +57,12 @@
     
 
 </script>
+
+</html>
+
+
+
+
+
 
 
