@@ -1,0 +1,48 @@
+<head>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<h1>To do app</h1>
+
+<ul>
+    <li className="checked">
+    
+        get books
+        
+    </li>
+    <li>
+        get coffee
+    </li>
+    <li>
+        post pictures
+    </li>
+    <li>
+        get groceries
+    </li>
+</ul>
+
+
+<script>
+    
+    function checkItem(){
+
+    this.style.textDecoration = "line-through";
+
+    }
+
+    var checkedItems = document.getElementsByClassName("checked");
+        
+    for(var i;i<checkedItems.length;i++){
+
+        checkedItems[i].onclick = checkItem;
+
+    }
+
+    
+    
+
+    
+
+</script>
+
+
