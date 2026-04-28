@@ -5,56 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    
+
+
+
 </head>
 <body>
     
     <h1>To do app</h1>
 
-<ul>
-    <li class="checked">
+    <div>
+        <input type="text" id="myInput" placeholder="Add new task">
+        <span onclick="newElement()">Add</span>
+    </div>
+
+<ul id="myUL">
     
-        get books
-        
-    </li>
-    <li>
-        get coffee
-    </li>
-    <li>
-        post pictures
-    </li>
-    <li>
-        get groceries
-    </li>
 </ul>
 
 </body>
 
 <script>
     
-    function checkItem(){
+    var list = document.querySelector('ul');
 
-    this.style.textDecoration = "line-through";
+    console.log(list);
 
+    list.addEventListener('click', function(ev){
+        ev.target.classList.toggle("checked");
+    },false);
+
+    function newElement() {
+
+        var li = document.createElement('li');
+
+        var inputValue = document.getElementById("myInput").value;
+
+        var t = document.createTextNode(inputValue);
+
+        li.append(t);
+
+        if(inputValue == ''){
+            alert("Write something")
+
+        }
+        else{
+            document.getElementById("myUL").appendChild(li);
+
+        }
+
+        document.getElementById("myInput").value="";
     }
-
-   
-
-    var checkedItems = document.getElementsByClassName("checked");
-
-    console.log(checkedItems)
-        
-    var i;
-
-    for(i=0;i<checkedItems.length;i++){
-
-        checkedItems[i].onclick = checkItem;
-
-    }
-
-    
-    
-
-    
 
 </script>
 
