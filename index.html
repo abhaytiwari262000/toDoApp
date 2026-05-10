@@ -1,69 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    
-
-
-
-</head>
-<body>
-    
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <h1>To do app</h1>
 
     <div>
-        <input type="text" id="myInput" placeholder="Add new task">
-        <span onclick="newElement()">Add</span>
+      <input type="text" id="myInput" placeholder="Add new task" />
+      <span onclick="newElement()">Add</span>
     </div>
 
-<ul id="myUL">
-    
-</ul>
+    <ul id="myUL"></ul>
+  </body>
 
-</body>
-
-<script>
-    
-    var list = document.querySelector('ul');
-
-    console.log(list);
-
-    list.addEventListener('click', function(ev){
-        ev.target.classList.toggle("checked");
-    },false);
-
-    function newElement() {
-
-        var li = document.createElement('li');
-
-        var inputValue = document.getElementById("myInput").value;
-
-        var t = document.createTextNode(inputValue);
-
-        li.append(t);
-
-        if(inputValue == ''){
-            alert("Write something")
-
-        }
-        else{
-            document.getElementById("myUL").appendChild(li);
-
-        }
-
-        document.getElementById("myInput").value="";
-    }
-
-</script>
-
+  <script src="script.js"></script>
 </html>
-
-
-
-
-
-
-
