@@ -2,3 +2,33 @@
 .checked {
     text-decoration: line-through;
 }
+
+.closed{
+
+    display: none;
+}
+
+li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+ul{
+    padding-left: 10px;
+}
+
+span{
+    margin-left: 5px;
+    
+}
+img{
+    width: 14px;
+
+    height: 14px;
+
+    margin-left: 10px;
+
+    
+
+}

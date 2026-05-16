@@ -1,6 +1,10 @@
+let closeLogoPath = "/close.png";
+
 let tasks_stringified = localStorage.getItem("tasks");
 
 let tasks = JSON.parse(tasks_stringified);
+
+let inputElement = document.getElementById("myInput");
 
 if (tasks == null) {
   tasks = [];
@@ -22,32 +26,79 @@ function onPageLoad() {
 
     item.append(text);
 
+    item.setAttribute("id", task.id);
+
+
+    let closeButtonLogo = document.createElement("img")
+
+    closeButtonLogo.setAttribute("alt", "close button");
+
+    closeButtonLogo.setAttribute("src", closeLogoPath);
+
+    item.appendChild(closeButtonLogo);
+
     list.appendChild(item);
   }
 }
 
 onPageLoad();
 
+function addEnterEventListener(){
+  
+  inputElement.addEventListener("keydown",function (e){
+
+    if (e.code == "Enter"){
+      newElement()
+    }
+  });
+}
+
+addEnterEventListener()
+
 list.addEventListener(
   "click",
   function (ev) {
-    ev.target.classList.toggle("checked");
-
     let target = ev.target;
 
-    let targetText = target.textContent;
+    if (target.nodeName == "LI") {
+      let targetId = target.id;
 
-    for (let i = 0; i < tasks.length; i++) {
-      task = tasks[i];
+      target.classList.toggle("checked");
 
-      if (task.value == targetText) {
-        task.checked = !task.checked;
+      for (let i = 0; i < tasks.length; i++) {
+        task = tasks[i];
+
+        if (task.id == targetId) {
+          task.checked = !task.checked;
+        }
       }
+
+      let stringified_tasks = JSON.stringify(tasks);
+
+      localStorage.setItem("tasks", stringified_tasks);
     }
 
-    let stringified_tasks = JSON.stringify(tasks);
+    if (target.nodeName == "IMG") {
+      let parentElement = target.parentElement;
 
-    localStorage.setItem("tasks", stringified_tasks);
+      parentElement.classList.add("closed");
+
+      console.log(tasks);
+
+      for (let task in tasks){
+        console.log(task)
+      }
+
+      tasks = tasks.filter((task) => {
+        return task.id != parentElement.id;
+      });
+
+      console.log(tasks)
+
+      let stringified_tasks = JSON.stringify(tasks);
+
+      localStorage.setItem("tasks", stringified_tasks);
+    }
   },
   false,
 );
@@ -55,7 +106,7 @@ list.addEventListener(
 function newElement() {
   let li = document.createElement("li");
 
-  let inputValue = document.getElementById("myInput").value;
+  let inputValue = inputElement.value;
 
   let t = document.createTextNode(inputValue);
   li.append(t);
@@ -64,17 +115,15 @@ function newElement() {
 
   let id = "task" + idNumber;
 
+  li.setAttribute("id", id);
 
-  li.setAttribute("id",id);
+  let closeButtonLogo = document.createElement("img");
 
-  let closeButton = document.createElement("span");
+  closeButtonLogo.setAttribute("alt", "close button");
 
-  let closeText = document.createTextNode("close");
+  closeButtonLogo.setAttribute("src", closeLogoPath);
 
-  closeButton.append(closeText);
-
-  li.appendChild(closeButton);
-
+  li.appendChild(closeButtonLogo);
 
   if (inputValue == "") {
     alert("Write something");
